@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WcfService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WcfService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/LeagueGoServer/WcfService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/LeagueGoServer/WcfService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/LeagueGoServer/WcfService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LeagueGoServer.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWcfService_ClientHeartbeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientHeartbeat" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientHeartbeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientHeartbeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientGetAllAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientGetAllAccount" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientGetAllAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientGetAllAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientLogin" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWcfService_ClientOffline_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ClientOffline" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IWcfService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientHeartbeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/ClientHeartbeat" message="tns:IWcfService_ClientHeartbeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/ClientHeartbeatResponse" message="tns:IWcfService_ClientHeartbeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientGetAllAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/ClientGetAllAccount" message="tns:IWcfService_ClientGetAllAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/ClientGetAllAccountResponse" message="tns:IWcfService_ClientGetAllAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWcfService/ClientLogin" message="tns:IWcfService_ClientLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/ClientLoginResponse" message="tns:IWcfService_ClientLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientOffline">
+      <wsdl:output wsaw:Action="http://tempuri.org/IWcfService/ClientOffline" message="tns:IWcfService_ClientOffline_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WcfService" type="tns:IWcfService">
+    <wsp:PolicyReference URI="#WcfService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ClientHeartbeat">
+      <soap12:operation soapAction="http://tempuri.org/IWcfService/ClientHeartbeat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientGetAllAccount">
+      <soap12:operation soapAction="http://tempuri.org/IWcfService/ClientGetAllAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientLogin">
+      <soap12:operation soapAction="http://tempuri.org/IWcfService/ClientLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientOffline">
+      <soap12:operation soapAction="http://tempuri.org/IWcfService/ClientOffline" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WcfService">
+    <wsdl:port name="WcfService" binding="tns:WcfService">
+      <soap12:address location="net.tcp://localhost:12121/LeagueGoServer/WcfService/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:12121/LeagueGoServer/WcfService/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
